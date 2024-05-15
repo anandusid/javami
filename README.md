@@ -4,4 +4,4 @@ java learn
 
 ## Features
 
-[Information Page](Notes/Streams/note.md)
+[Information Page](Notes/Streams/streams.md)
