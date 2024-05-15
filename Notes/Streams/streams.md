@@ -3,21 +3,44 @@
 The key difference between intermediate operations and terminal operations in the Java Stream API lies in their purpose and their effects on streams:
 
 Intermediate Operations
-	Purpose:
-
-		Intermediate operations transform, filter, or manipulate the elements of a stream.
-		They return another stream as a result, allowing you to chain multiple intermediate operations together to form a pipeline.
+Purpose:
+	     Intermediate operations transform, filter, or manipulate the elements of a stream.
+		 They return another stream as a result, allowing you to chain multiple intermediate operations together to form a pipeline.
+		 
 Characteristics:
-
-		They are lazy, meaning they do not perform any processing until a terminal operation is invoked.
-		Intermediate operations do not produce a final result by themselves; they merely prepare the stream for further processing.
+	     They are lazy, meaning they do not perform any processing until a terminal operation is invoked.
+         Intermediate operations do not produce a final result by themselves; they merely prepare the stream for further processing.
+         
 Examples:
+              map(): Maps each element of the stream to another value.
+              
+        final List<String> fruitList = Arrays.asList("ORange", "Mango", "Apple", "jackfruit", "Guva");
+		final Stream<String> map = fruitList.stream().map(String::toUpperCase);
+		map.forEach(System.out::println);
 
-map(): Maps each element of the stream to another value.
 filter(): Filters the elements of the stream based on a condition.
+			
+			// filter
+		final Stream<String> filter = fruitList.stream().filter(s -> s.startsWith("A"));
+		filter.forEach(System.out::println);
+
 sorted(): Sorts the elements of the stream.
 distinct(): Removes duplicate elements from the stream.
+
 flatMap(): Flattens a stream of streams into a single stream.
+
+		// flatMap
+
+		final List<List<String>> fruitListOfList = Arrays.asList(
+				Arrays.asList("Orange", "Mango", "Apple", "Jackfruit", "Guva"),
+				Arrays.asList("Grape", "Apricot", "Pineapple", "Watermelon", "Strawbery"),
+				Arrays.asList("Chery", "Kivi", "Sugercane", "Tomato", "Musmabi"));
+
+		final Stream<String> sortedFruitList = fruitListOfList.stream().flatMap(s -> s.stream().sorted());
+		sortedFruitList.forEach(System.out::println);
+		
+
+	
 Terminal Operations
 Purpose:
 
