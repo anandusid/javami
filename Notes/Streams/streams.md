@@ -53,11 +53,35 @@ After a terminal operation is invoked, the stream is consumed, and it cannot be 
 Examples:
 
 collect(): Collects the elements of the stream into a collection or other data structure.
+
+		// collect()
+
+		final List<List<String>> fruitListOfListM = Arrays.asList(
+				Arrays.asList("Orange", "Mango", "Apple", "Jackfruit", "Guva"),
+				Arrays.asList("Grape", "Apricot", "Pineapple", "Watermelon", "Strawbery"),
+				Arrays.asList("Chery", "Kivi", "Sugercane", "Tomato", "Musmabi"));
+
+		final List<String> sortedFruitListM = fruitListOfList.stream().flatMap(List::stream)
+				.collect(Collectors.toList());
+
+		final var count = IntStream.range(0, sortedFruitListM.size()).boxed()
+				.collect(Collectors.toMap(i -> i + 1, i -> sortedFruitListM.get(i)));
+
+		System.out.println(count);
 forEach(): Performs an action for each element of the stream.
 reduce(): Performs a reduction on the elements of the stream to produce a single value.
+
+		// reduce
+
+		final List<String> fruitListR = Arrays.asList("ORange", "Mango", "Apple", "jackfruit", "Guva");
+
+		final String all = fruitListR.stream().reduce(String::concat).orElse(null);
+		System.out.println(all);
 count(): Counts the number of elements in the stream.
 anyMatch(), allMatch(), noneMatch(): Checks if any, all, or none of the elements match a given predicate.
+
 Summary
+
 Intermediate operations: Transform and prepare the stream for further processing. They are lazy and return another stream.
 
 Terminal operations: Consume the stream and produce a final result. They are eager and cannot be followed by other operations.

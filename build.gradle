@@ -36,6 +36,8 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.27' // Use appropriate version
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'com.google.guava:guava'
+	
 }
 
 tasks.named('test') {
