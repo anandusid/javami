@@ -68,6 +68,7 @@ collect(): Collects the elements of the stream into a collection or other data s
 				.collect(Collectors.toMap(i -> i + 1, i -> sortedFruitListM.get(i)));
 
 		System.out.println(count);
+		
 forEach(): Performs an action for each element of the stream.
 reduce(): Performs a reduction on the elements of the stream to produce a single value.
 
@@ -77,7 +78,9 @@ reduce(): Performs a reduction on the elements of the stream to produce a single
 
 		final String all = fruitListR.stream().reduce(String::concat).orElse(null);
 		System.out.println(all);
+		
 count(): Counts the number of elements in the stream.
+
 anyMatch(), allMatch(), noneMatch(): Checks if any, all, or none of the elements match a given predicate.
 
 Summary
