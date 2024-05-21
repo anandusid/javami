@@ -24,7 +24,7 @@ public class StoreController {
 
 	@GetMapping("/test")
 	public String test() {
-		return "wprking";
+		return "working";
 	}
 
 	@PostMapping("/store")
@@ -45,7 +45,7 @@ public class StoreController {
 		return new ResponseEntity<>(createdSeller, HttpStatus.OK);
 	}
 
-	@GetMapping("{id}")
+	@GetMapping("store/{id}")
 	public ResponseEntity<Seller> findStore(@PathVariable final Long id) {
 		final Seller createdSeller = storeService.findStore(id);
 		return new ResponseEntity<>(createdSeller, createdSeller != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
