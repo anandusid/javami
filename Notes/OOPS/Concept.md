@@ -1,5 +1,7 @@
 Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects," which can contain data and code that manipulates that data. Java is a widely used OOP language, and understanding its core concepts is essential for effective programming. Here are the primary OOP concepts in Java, along with explanations, when to use them, and their benefits:
 
+
+
 1. Encapsulation
 Explanation:
 Encapsulation is the mechanism of wrapping the data (variables) and the code (methods) that manipulates the data into a single unit, known as a class. It restricts direct access to some of an object's components, which can prevent the accidental modification of data.
@@ -40,6 +42,8 @@ public class BankAccount {
         return balance;
     }
 }
+
+
 2. Inheritance
 Explanation:
 Inheritance is the mechanism by which one class (the child or subclass) inherits the fields and methods of another class (the parent or superclass). It allows for hierarchical classification.
@@ -76,6 +80,8 @@ public class Main {
         dog.bark();
     }
 }
+
+
 3. Polymorphism
 Explanation:
 Polymorphism allows methods to do different things based on the object it is acting upon. It allows one interface to be used for a general class of actions.
@@ -121,6 +127,8 @@ public class Main {
         myAnimal.sound(); // Outputs "Dog barks"
     }
 }
+
+
 4. Abstraction
 Explanation:
 Abstraction is the concept of hiding the complex implementation details and showing only the necessary features of an object. It can be achieved using abstract classes and interfaces.
