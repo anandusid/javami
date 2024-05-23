@@ -7,7 +7,7 @@ java learn
 [Streams](Notes/Streams/streams.md)
 [JPA repository](Notes/ORM/Diiference-HIBERNATE-JPA-JPARepository.md)
 [OOPS](Notes/OOPS/Concept.md)
-[Abstraction vs Interface)(Notes/OOPS/abstractionandinterface_note.md)
+[Abstraction vs Interface](Notes/OOPS/abstractionandinterface_note.md)
 [Design Pattern](Notes/DesignPattern/DesignPattern.md)
 [solid Principle](Notes/DesignPattern/SOLID.md)
 
