@@ -14,3 +14,4 @@ java learn
 [datastructure](Notes/datastructure/datastructure.md)
 
 [aws](Notes/aws/EC2.md)
+[pipeline](Notes/aws/auto-deploy.md)
