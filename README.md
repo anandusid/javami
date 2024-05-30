@@ -12,3 +12,5 @@ java learn
 [solid Principle](Notes/DesignPattern/SOLID.md)
 
 [datastructure](Notes/datastructure/datastructure.md)
+
+[aws](Notes/aws/EC2.md)
