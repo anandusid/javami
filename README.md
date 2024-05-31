@@ -15,3 +15,7 @@ java learn
 
 [aws](Notes/aws/EC2.md)
 [pipeline](Notes/aws/auto-deploy.md)
+
+[Thread](Notes/thread/thread.md)
+
+[String Class ](Notes/string/string-builder-buffer.md)
