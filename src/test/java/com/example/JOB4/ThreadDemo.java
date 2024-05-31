@@ -1,7 +1,7 @@
 package com.example.JOB4;
 
 class Counter {
-	private int count = 0;
+	private static int count = 0;
 
 	// Synchronized method to ensure thread safety
 	public synchronized void increment() {
