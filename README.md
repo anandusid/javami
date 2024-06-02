@@ -25,6 +25,8 @@ java learn
 
 [Thread](Notes/thread/thread.md)
 
+[Kotlin](Notes/kotlin/kotlin.md)
+
 [String Class ](Notes/string/string-builder-buffer.md)
 
 [Spring and SPRING BOOT ](Notes/spring/spring.md)
