@@ -4,6 +4,8 @@ java learn
 
 ## Features
 
+[Introduction](Notes/intro.md)
+
 [Streams](Notes/Streams/streams.md)
 
 [JPA repository](Notes/ORM/Diiference-HIBERNATE-JPA-JPARepository.md)
