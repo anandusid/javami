@@ -14,6 +14,10 @@ java learn
 
 [Abstraction vs Interface](Notes/OOPS/abstractionandinterface_note.md)
 
+[Primitives vs Wrapper](Notes/OOPS/primitives-wrapper.md)
+
+[reflection](Notes/OOPS/reflection.md)
+
 [Design Pattern](Notes/DesignPattern/DesignPattern.md)
 
 [solid Principle](Notes/DesignPattern/SOLID.md)

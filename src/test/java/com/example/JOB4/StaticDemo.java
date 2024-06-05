@@ -2,21 +2,28 @@ package com.example.JOB4;
 
 public class StaticDemo {
 
-	static int count;
-	String name = "anandu";
+	public static void main(final String[] args) {
+		final StaticDemoChild obj = new StaticDemoChild();
+		StaticDemoChild.staticDisplay();
 
-	static void getCount() {
-		final var s = 3;
-		System.out.println(s);
-//		System.out.println(name);
-//		display();
 	}
 
-	void display() {
-		System.out.println("nothing ....");
-		System.out.println(count);
+}
+
+class StaticDemoParent {
+
+	static String name = "StaticDemo";
+
+	static void staticDisplay() {
 		System.out.println(name);
-		getCount();
 	}
+
+	void normalDisplay() {
+		System.out.println("normalDisplay");
+	}
+
+}
+
+class StaticDemoChild extends StaticDemoParent {
 
 }
