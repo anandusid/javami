@@ -14,6 +14,10 @@ java learn
 
 [Abstraction vs Interface](Notes/OOPS/abstractionandinterface_note.md)
 
+[comparatorcomparable](Notes/OOPS/comparatorcomparabledemo.md)
+
+[sigleton](Notes/OOPS/singleton.md)
+
 [Primitives vs Wrapper](Notes/OOPS/primitives-wrapper.md)
 
 [reflection](Notes/OOPS/reflection.md)

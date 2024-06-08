@@ -25,5 +25,8 @@ class StaticDemoParent {
 }
 
 class StaticDemoChild extends StaticDemoParent {
+	static void display() {
+		StaticDemoChild.staticDisplay();
+	}
 
 }

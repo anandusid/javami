@@ -47,6 +47,7 @@ public class StoreController {
 
 	@GetMapping("store/{id}")
 	public ResponseEntity<Seller> findStore(@PathVariable final Long id) {
+		System.out.println(" Main controller");
 		final Seller createdSeller = storeService.findStore(id);
 		return new ResponseEntity<>(createdSeller, createdSeller != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
