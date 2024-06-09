@@ -109,3 +109,18 @@ public class EmployeeController {
 Start your Spring Boot application and test the new endpoint by sending a GET request to `/employees/by-dob?dob=yyyy-MM-dd` with the appropriate date format.
 
 This setup will enable your Spring Boot application to call a stored procedure to retrieve the employee name based on the specified date of birth, in addition to the previous functionality for retrieving employees by age.
+
+
+
+
+Yes, exactly. For a single entity, typically only one view should be created, reflecting a specific subset or transformation of the data represented by that entity. This view can be associated with one repository.
+
+However, if you have different use cases or scenarios where you need to access the same entity data in different ways (e.g., different column selections, filters, or transformations), you can create multiple views, each tailored to a specific use case. In this scenario, you'll need to create a separate repository for each view.
+
+So, for a given entity:
+
+1. You can have multiple views representing different perspectives or subsets of the data.
+2. Each view should have a unique name.
+3. You'll need a separate repository for each view to interact with the data represented by that view.
+
+This allows you to effectively organize and manage your data access logic based on different views of the same underlying entity data.
