@@ -42,3 +42,13 @@ java learn
 [String Class ](Notes/string/string-builder-buffer.md)
 
 [Spring and SPRING BOOT ](Notes/spring/spring.md)
+
+
+[Spring JPA  ](Notes/ORM/Diiference-HIBERNATE-JPA-JPARepository.md)
+
+
+[Procedure  ](Notes/ORM/procedure.md)
+
+[Function  ](Notes/ORM/function.md)
+
+[Index SQL  ](Notes/ORM/index.md)

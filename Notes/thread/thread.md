@@ -214,6 +214,96 @@ public class Main {
 The `join()` method ensures that the main thread waits for the specified threads to finish execution, but it does not control the order in which the threads `t1` and `t2` execute. The actual execution order is determined by the JVM's thread scheduler. The use of `synchronized` in your `Counter` class ensures that increments to the `count` variable are performed safely by both threads, avoiding race conditions.
 
 
+Both `synchronized` blocks and `ReentrantLock` have their own use cases and trade-offs. Here are some considerations to help you decide which to use in your application:
+
+### Synchronized Blocks
+- **Simplicity:** Easier to use and understand. Ideal for simple synchronization needs.
+- **Automatic Release:** The lock is automatically released when the block is exited, either normally or via an exception.
+- **Performance:** Generally, better performance for basic locking due to JVM optimizations.
+
+### ReentrantLock
+- **Flexibility:** Provides more features like try-locking, timed locking, and interruptible locking.
+- **Explicit Locking:** Requires explicit calls to `lock()` and `unlock()`, which can be more error-prone if not handled correctly (e.g., forgetting to unlock).
+- **Condition Variables:** Provides support for multiple condition variables associated with a single lock, offering finer control over thread coordination.
+
+### Singleton Class Lazy Initialization
+
+For singleton class lazy initialization, double-checked locking with `synchronized` is a common and simple approach:
+
+#### Example using `synchronized`:
+
+```java
+public class Singleton {
+    private static volatile Singleton instance;
+
+    private Singleton() {
+        // private constructor
+    }
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+
+In this example:
+- The `volatile` keyword ensures that multiple threads handle the `instance` variable correctly.
+- The `synchronized` block inside the `if (instance == null)` check ensures that the instance is created only once, providing thread safety.
+
+#### Example using `ReentrantLock`:
+
+Using `ReentrantLock` for lazy initialization can be done, but it is generally more verbose:
+
+```java
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class Singleton {
+    private static volatile Singleton instance;
+    private static final Lock lock = new ReentrantLock();
+
+    private Singleton() {
+        // private constructor
+    }
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            lock.lock();
+            try {
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+        return instance;
+    }
+}
+```
+
+In this example:
+- The `ReentrantLock` is used to control access to the instance creation code.
+- The `lock.lock()` and `lock.unlock()` calls ensure that only one thread can enter the critical section at a time, similar to the `synchronized` block.
+
+### Which One to Use?
+
+For most applications, especially for simple synchronization needs like singleton lazy initialization, the `synchronized` block is sufficient and recommended due to its simplicity and automatic handling of the lock.
+
+Use `ReentrantLock` if:
+- You need advanced lock features like try-locking, timed locking, or interruptible locking.
+- You need multiple condition variables for finer control over thread coordination.
+- You have a complex synchronization scenario where these features provide significant benefits.
+
+For singleton lazy initialization, the `synchronized` block with double-checked locking is usually the best choice due to its simplicity and effectiveness.
+
 
 Thread Life Cycle:
 
