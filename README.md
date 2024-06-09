@@ -52,3 +52,7 @@ java learn
 [Function  ](Notes/ORM/function.md)
 
 [Index SQL  ](Notes/ORM/index.md)
+
+[Hibernate Cache  ](Notes/ORM/hibernate-cache.md)
+
+[mapping  ](Notes/ORM/mapping.md)

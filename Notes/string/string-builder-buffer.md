@@ -83,3 +83,57 @@ In this case:
 - The garbage collector reclaims memory for objects no longer referenced, but interned string literals typically persist in the string pool.
 
 Understanding this mechanism helps explain how Java efficiently manages memory and optimizes the use of immutable `String` objects.
+
+
+In Java, the `==` operator is used to compare references, not the actual content of the objects. When you use the `new` keyword to create a `String`, it creates a new instance of the `String` object on the heap. On the other hand, when you create a `String` using double quotes (like `"anandu"`), it uses the string pool, a special memory area used for string literals.
+
+Here's a detailed explanation of why `a == b` gives `false` in your code:
+
+### String Pool vs Heap
+
+1. **String Pool**: 
+   - When you create a string using double quotes, such as `String b = "anandu";`, Java checks the string pool first. If the string already exists in the pool, it returns the reference to the existing string. If it does not exist, it creates a new string in the pool.
+   
+2. **Heap**: 
+   - When you create a string using the `new` keyword, such as `String a = new String("anandu");`, Java explicitly creates a new `String` object on the heap, even if an identical string already exists in the string pool.
+
+### Code Example
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        final String a = new String("anandu");
+        final String b = "anandu";
+        
+        System.out.println(a == b); // false
+        System.out.println(a.equals(b)); // true
+    }
+}
+```
+
+### Explanation
+
+1. **String a = new String("anandu");**: 
+   - This line creates a new `String` object on the heap. The content of this string is `"anandu"`, but it is a new instance, so it does not refer to the same object in the string pool.
+
+2. **String b = "anandu";**:
+   - This line uses the string pool. Since `"anandu"` is a string literal, it will be placed in the string pool if it is not already present. If it is present, `b` will refer to the existing string.
+
+3. **a == b**:
+   - This compares the references of `a` and `b`. Since `a` refers to a new instance on the heap and `b` refers to the string pool instance, the references are different, and the comparison returns `false`.
+
+### Correct Way to Compare Strings
+
+To compare the actual content of strings, you should use the `.equals()` method:
+
+```java
+System.out.println(a.equals(b)); // true
+```
+
+The `.equals()` method compares the content of the strings and will return `true` if the contents are identical.
+
+### Summary
+
+- `a == b` returns `false` because `a` and `b` refer to different `String` objects.
+- `a.equals(b)` returns `true` because the content of the strings is the same.
+- The `==` operator should be used for reference comparison, not content comparison, in Java. For string content comparison, always use the `.equals()` method.
