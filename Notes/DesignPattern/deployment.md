@@ -44,3 +44,8 @@ When explaining your microservice project's deployment process that involves AWS
 - **Security**: Briefly mention any security checks or scanning tools used in the pipeline.
 
 By breaking down the process into these key steps, you can effectively communicate the deployment strategy in a way that highlights automation, reliability, and efficiency.
+
+
+Main lib for services:
+
+spring-cloud-starter-gateway api-gateway
