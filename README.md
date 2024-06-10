@@ -32,9 +32,11 @@ java learn
 
 [reflection](Notes/OOPS/reflection.md)
 
-[Design Pattern](Notes/DesignPattern/DesignPattern.md)
+[Design Pattern](Notes/DesignPattern/deployment.md)
 
 [solid Principle](Notes/DesignPattern/SOLID.md)
+
+[Deployment](Notes/DesignPattern/DesignPattern.md)
 
 
 [datastructure](Notes/datastructure/datastructure.md)
