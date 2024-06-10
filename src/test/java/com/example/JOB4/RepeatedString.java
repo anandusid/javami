@@ -1,5 +1,8 @@
 package com.example.JOB4;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RepeatedString {
 	public static void main(final String[] args) {
 
@@ -21,6 +24,18 @@ public class RepeatedString {
 		}
 		System.out.println(" repeatedString : " + repeatedString);
 		System.out.println("notrepeatedString :" + notrepeatedString);
+
+		final String sentence = "This is a test. This test is only a test.";
+
+		final String cleanSentace = sentence.replaceAll("[^a-zA-Z ]", "").toLowerCase();
+		final String[] cleanSentaceArr = cleanSentace.split("\\s+");
+		final Map<String, Integer> wordCountMap = new HashMap<>();
+		for (final String a : cleanSentaceArr) {
+
+			wordCountMap.put(a, wordCountMap.getOrDefault(a, 0) + 1);
+
+		}
+		System.out.println(wordCountMap);
 
 	}
 

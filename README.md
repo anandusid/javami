@@ -8,9 +8,19 @@ java learn
 
 [Streams](Notes/Streams/streams.md)
 
+[Functional](Notes/Streams/FunctionalInterface.md)
+
+[Marker](Notes/Streams/MarkInterface.md)
+
+[Streams](Notes/Streams/streams.md)
+
 [JPA repository](Notes/ORM/Diiference-HIBERNATE-JPA-JPARepository.md)
 
 [OOPS](Notes/OOPS/Concept.md)
+
+[enum](Notes/OOPS/enum.md)
+
+[Singleton](Notes/OOPS/singleton.md)
 
 [Abstraction vs Interface](Notes/OOPS/abstractionandinterface_note.md)
 

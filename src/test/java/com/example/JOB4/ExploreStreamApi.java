@@ -32,7 +32,7 @@ public class ExploreStreamApi {
 
 		final Map<String, Long> map = fruitListWithDummy.stream()
 				.collect(Collectors.groupingBy(Function.identity(), TreeMap::new, Collectors.counting()));
-		System.out.println(map);
+		System.out.println("createrFruitMapWithNameAndCount" + map);
 
 	}
 

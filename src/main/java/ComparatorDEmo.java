@@ -9,7 +9,7 @@ public class ComparatorDEmo {
 
 		final Comparator<String> obj = (s1, s2) -> {
 
-			if (s1.length() < s2.length()) {
+			if (s1.length() > s2.length()) {
 				return -1;
 			}
 			return 1;

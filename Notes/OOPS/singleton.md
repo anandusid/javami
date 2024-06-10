@@ -50,3 +50,13 @@ public class SingletonClass {
 - **Synchronization Placement**: Placing synchronization inside the `if (instance == null)` check minimizes performance overhead by not synchronizing the entire method.
 
 This pattern ensures that the `SingletonClass` is lazily initialized and thread-safe, with minimal performance overhead.
+
+
+public enum SingletonEnum {
+    INSTANCE;
+
+    // You can add methods and fields as needed
+    public void doSomething() {
+        System.out.println("Singleton using Enum");
+    }
+}
