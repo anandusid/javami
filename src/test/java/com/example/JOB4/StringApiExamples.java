@@ -1,5 +1,6 @@
 package com.example.JOB4;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,49 @@ public class StringApiExamples {
 
 		System.out.println(fruitMap);
 
+		final List<Employee> employees = new ArrayList<>();
+		employees.add(new Employee(1, 20, 50000));
+
+		final double averageSalary = employees.stream().filter(e -> e.getAge() > 50).mapToDouble(Employee::getSalary)
+				.average().orElse(0.0);
+
 	}
 
+}
+
+class Employee {
+	private int id;
+	private int age;
+	private double salary;
+
+	// Constructor, getters, and setters
+	public Employee(final int id, final int age, final double salary) {
+		this.id = id;
+		this.age = age;
+		this.salary = salary;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(final int id) {
+		this.id = id;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(final int age) {
+		this.age = age;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(final double salary) {
+		this.salary = salary;
+	}
 }

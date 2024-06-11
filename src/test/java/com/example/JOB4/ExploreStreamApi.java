@@ -16,10 +16,39 @@ public class ExploreStreamApi {
 
 		final List<Integer> numbers = List.of(3, 2, 6, 1, 2, 2, 3, 4, 4, 5);
 		final List<String> fruitListWithDummy = Arrays.asList("Orange", "Mango", "Apple", "Jackfruit", "Guva", "Mango");
+		final List<String> strings = List.of("apple", "banana", "pear", "orange", "kiwi", "grape");
+		final List<String> stringsa = List.of("apple", "banana", "pear");
 
+		final List<String> stringsI = List.of("1234567", "9876543", "2345678");
+
+		obj.makeCharsForTheString(stringsa);
+		obj.makeIntegerForTheString(stringsI);
+		obj.createMapofLengthandCount(strings);
 		obj.createMappingWithOccurence(numbers);
 		obj.createMappingWithLength(fruitListWithDummy);
 		obj.createrFruitMapWithNameAndCount(fruitListWithDummy);
+	}
+
+	private void makeIntegerForTheString(final List<String> stringsI) {
+		final List<Integer> intList = stringsI.stream().flatMap(s -> s.chars().mapToObj(i -> (Integer) i))
+				.collect(Collectors.toList());
+
+		System.out.println("integer List----- " + intList);
+
+	}
+
+	private void makeCharsForTheString(final List<String> stringsa) {
+		final List<Character> charList = stringsa.stream().flatMap(s -> s.chars().mapToObj(c -> (char) c))
+				.collect(Collectors.toList());
+		System.out.println("charList----- " + charList);
+
+	}
+
+	private void createMapofLengthandCount(final List<String> strings) {
+		final Map<Integer, Long> map = strings.stream()
+				.collect(Collectors.groupingBy(String::length, Collectors.counting()));
+		System.out.println("createMapofLengthandCount **** " + map);
+
 	}
 
 	private void createrFruitMapWithNameAndCount(final List<String> fruitListWithDummy) {
