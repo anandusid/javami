@@ -98,6 +98,59 @@ Sure! Here are brief explanations of some common design patterns in Java, along 
    }
    ```
 
+import org.springframework.context.ApplicationEventPublisher;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
+
+@Component
+public class OrderService {
+
+    private final ApplicationEventPublisher eventPublisher;
+
+    @Autowired
+    public OrderService(ApplicationEventPublisher eventPublisher) {
+        this.eventPublisher = eventPublisher;
+    }
+
+    public void createOrder(Long orderId) {
+        // Logic to create order...
+
+        // Publish the OrderCreatedEvent
+        OrderCreatedEvent event = new OrderCreatedEvent(this, orderId);
+        eventPublisher.publishEvent(event);
+    }
+}
+
+
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ShippingService {
+
+    @EventListener
+    public void handleOrderCreated(OrderCreatedEvent event) {
+        // Logic to handle order created event
+        System.out.println("ShippingService: Order created - " + event.getOrderId());
+        // Perform shipping related tasks...
+    }
+}
+
+@Component
+public class EmailService {
+
+    @EventListener
+    public void handleOrderCreated(OrderCreatedEvent event) {
+        // Logic to handle order created event
+        System.out.println("EmailService: Sending confirmation email for order - " + event.getOrderId());
+        // Send confirmation email to customer...
+    }
+}
+
+
 These examples provide a basic understanding of how these design patterns are implemented in Java. Each pattern addresses a specific problem and provides a reusable solution that can be applied to various scenarios in software development.
 
 Yes, the Prototype Pattern is another commonly used design pattern in Java. It's used to create new objects by copying an existing object, known as the prototype.

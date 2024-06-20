@@ -68,6 +68,7 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public Seller findStore(final Long storeId) {
+		final int n = 1 / 0;
 		return sellerRepo.findById(storeId)
 				.orElseThrow(() -> new IllegalArgumentException("Store not found with id: " + storeId));
 	}

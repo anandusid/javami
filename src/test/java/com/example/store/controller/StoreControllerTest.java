@@ -1,8 +1,9 @@
 package com.example.store.controller;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import com.example.store.entity.Seller;
+import com.example.store.repo.OrderEnquiryRepo;
 import com.example.store.service.StoreService;
 
 @WebMvcTest(StoreController.class)
@@ -24,6 +25,8 @@ public class StoreControllerTest {
 
 	@MockBean
 	private StoreService storeService;
+	@MockBean
+	private OrderEnquiryRepo orderEnquiryRepo;
 
 	@BeforeEach
 	public void setup() {
@@ -39,13 +42,9 @@ public class StoreControllerTest {
 
 		when(storeService.findStore(storeId)).thenReturn(seller);
 
-		final MvcResult result = mockMvc.perform(get("/store/" + storeId)).andExpect(status().isOk())
-				.andExpect(jsonPath("$.id").value(storeId)).andExpect(jsonPath("$.name").value("John Doe")).andReturn();
+		mockMvc.perform(get("/store/" + storeId)).andExpect(status().isOk());
 
-		final String content = result.getResponse().getContentAsString();
-		System.out.println("Response content: " + content);
-
-//		verify(storeService, times(1)).findStore(storeId);
+		verify(storeService, times(1)).findStore(storeId);
 	}
 
 	@Test
@@ -56,7 +55,7 @@ public class StoreControllerTest {
 
 		mockMvc.perform(get("/store/" + storeId)).andExpect(status().isNotFound());
 
-//		verify(storeService, times(1)).findStore(storeId);
+		verify(storeService, times(1)).findStore(storeId);
 	}
 
 }

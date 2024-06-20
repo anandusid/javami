@@ -420,3 +420,32 @@ public class MainApplication {
 ### Summary
 
 In a Spring Boot application, the `SecurityConfig` class configures the security filter chain, which intercepts and processes all incoming API requests. This ensures that security rules are enforced, and only authenticated and authorized users can access protected resources. By setting up URL patterns and authentication methods in `SecurityConfig`, you can control access to different parts of your application seamlessly.
+
+
+In the context of the `SpringSecurityConfig` class you provided earlier, both JWT (JSON Web Token) and OAuth 2.0 serve different purposes related to authentication and authorization:
+
+### JWT (JSON Web Token)
+
+- **Purpose:** JWT is used for authentication.
+- **Functionality in the `SpringSecurityConfig` class:**
+  - The `JWTAuthorizationWebFilter` bean is responsible for JWT-based authentication.
+  - It typically extracts JWT from incoming requests, verifies its validity (signature, expiration, etc.), and establishes the identity of the user.
+  - JWT contains claims (such as user ID, roles) that are digitally signed, allowing the application to trust the information it carries without needing to check back with the issuing server for every request.
+  - JWT provides stateless authentication, meaning the server does not need to store session state because all necessary information is contained within the token itself.
+
+### OAuth 2.0
+
+- **Purpose:** OAuth 2.0 is used for authorization.
+- **Functionality in the `SpringSecurityConfig` class:**
+  - OAuth 2.0 is configured through `http.oauth2Login()` in the `springSecurityFilterChain()` method.
+  - It facilitates delegated authorization, where users grant access to resources without sharing their credentials directly.
+  - OAuth 2.0 in this setup handles the process of redirecting users to an external authorization server (like GitHub), obtaining authorization from the user, and then issuing access tokens.
+  - These access tokens are used to access protected resources on behalf of the user. The server validates these tokens to ensure the client (your application) has the required permissions.
+  - OAuth 2.0 involves flows like Authorization Code, Implicit, Client Credentials, etc., to handle different authorization scenarios securely.
+
+### Summary
+
+- **JWT (Authentication):** Establishes the identity of the user based on information contained within the token.
+- **OAuth 2.0 (Authorization):** Manages permissions and access to resources, allowing clients to act on behalf of users without exposing their credentials.
+
+In the `SpringSecurityConfig` class you provided, JWT and OAuth 2.0 are used together to provide a comprehensive security solution where JWT handles authentication, and OAuth 2.0 manages authorization for accessing protected resources. This setup ensures secure and efficient handling of user authentication and authorization within your Spring WebFlux application.

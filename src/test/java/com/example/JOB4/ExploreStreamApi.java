@@ -21,12 +21,21 @@ public class ExploreStreamApi {
 
 		final List<String> stringsI = List.of("1234567", "9876543", "2345678");
 
+		final var stringObj = "India is my country , Pakisthan is my negbour company";
+		obj.coutWords(stringObj);
 		obj.makeCharsForTheString(stringsa);
 		obj.makeIntegerForTheString(stringsI);
 		obj.createMapofLengthandCount(strings);
 		obj.createMappingWithOccurence(numbers);
 		obj.createMappingWithLength(fruitListWithDummy);
 		obj.createrFruitMapWithNameAndCount(fruitListWithDummy);
+	}
+
+	private void coutWords(final String stringObj) {
+		final Map<String, Long> wordCount = Arrays.asList(stringObj.replaceAll("[^a-zA-Z ]", "").split(" ")).stream()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		System.out.println(wordCount);
+
 	}
 
 	private void makeIntegerForTheString(final List<String> stringsI) {
