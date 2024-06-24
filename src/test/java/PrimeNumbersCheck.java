@@ -27,8 +27,8 @@ public class PrimeNumbersCheck {
 		}
 		System.out.println(map1 + " *** " + map2);
 
-		final double removeDuplicate = map1.entrySet().stream().filter(e -> e.getValue() == 1)
-				.mapToDouble(Map.Entry::getValue).sum();
+		final Map<Character, Integer> removeDuplicate = map1.entrySet().stream().filter(e -> e.getValue() == 1).collect( Collectors.toMap(Map.Entry::getKey, Map.Entry::getKey))
+//				.map(Map.Entry::getValue).sum();
 		System.out.println(removeDuplicate);
 
 		final String str = "red blue green black blue white black";

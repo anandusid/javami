@@ -2,6 +2,7 @@ package com.example.JOB4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,8 +22,7 @@ public class StringApiExamples {
 
 		final List<Integer> eqr = integerList.stream().map(s -> s * s).collect(Collectors.toList());
 
-		final String lowest = fruitList.stream().max((s1, s2) -> Integer.compare(s1.length(), s2.length()))
-				.orElse(null);
+		final String lowest = fruitList.stream().sort(Comparator.comparing(s).re).orElse(null);
 		System.out.println(lowest);
 
 		final List<String> fruitListWithDummy = Arrays.asList("ORange", "Mango", "Apple", "jackfruit", "Guva");

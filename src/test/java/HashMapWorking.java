@@ -28,6 +28,9 @@ public class HashMapWorking {
 		final Employee seconddEmployees = employees.stream()
 				.sorted(Comparator.comparingInt(e -> e.getSalary() + e.getSalaryB())).skip(1).findFirst().orElse(null);
 
+		final Employee seconddEmployeesSalery = employees.stream().sorted(Comparator.comparingInt(Employee::getSalary))
+				.skip(1).findFirst().orElse(null);
+
 		System.out.println(seconddEmployees.getSalary());
 
 		// Print sorted employees
