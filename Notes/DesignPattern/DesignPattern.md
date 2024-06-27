@@ -60,71 +60,83 @@ Sure! Here are brief explanations of some common design patterns in Java, along 
 3. **Observer Pattern**:
    - Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
-   ```java
-   import java.util.ArrayList;
-   import java.util.List;
+  Got it! Let's use a similar example with the observer pattern to demonstrate how different services can handle events when an order is created.
 
-   interface Observer {
-       void update();
-   }
+### Example: Order Creation and Event Handling with Observer Pattern
 
-   class Subject {
-       private List<Observer> observers = new ArrayList<>();
+#### Components
 
-       public void addObserver(Observer observer) {
-           observers.add(observer);
-       }
+1. **OrderService**: Publishes an event when an order is created.
+2. **OrderCreatedEvent**: Custom event class carrying order information.
+3. **ShippingService**: Listens to the order created event and handles shipping logic.
 
-       public void notifyObservers() {
-           for (Observer observer : observers) {
-               observer.update();
-           }
-       }
-   }
+### Detailed Implementation
 
-   class ConcreteObserver implements Observer {
-       public void update() {
-           System.out.println("Observer notified");
-       }
-   }
+#### 1. Define the Order Created Event
 
-   public class Main {
-       public static void main(String[] args) {
-           Subject subject = new Subject();
-           ConcreteObserver observer = new ConcreteObserver();
-           subject.addObserver(observer);
-           subject.notifyObservers();  // Output: Observer notified
-       }
-   }
-   ```
+Create a custom event class that carries the necessary information about the order.
 
-import org.springframework.context.ApplicationEventPublisher;
+```java
+import org.springframework.context.ApplicationEvent;
 
+public class OrderCreatedEvent extends ApplicationEvent {
+    private final String orderId;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Component;
-
-@Component
-public class OrderService {
-
-    private final ApplicationEventPublisher eventPublisher;
-
-    @Autowired
-    public OrderService(ApplicationEventPublisher eventPublisher) {
-        this.eventPublisher = eventPublisher;
+    public OrderCreatedEvent(Object source, String orderId) {
+        super(source);
+        this.orderId = orderId;
     }
 
-    public void createOrder(Long orderId) {
-        // Logic to create order...
-
-        // Publish the OrderCreatedEvent
-        OrderCreatedEvent event = new OrderCreatedEvent(this, orderId);
-        eventPublisher.publishEvent(event);
+    public String getOrderId() {
+        return orderId;
     }
 }
+```
 
+#### 2. Publish the Event in OrderService
 
+Modify the `OrderService` to publish the `OrderCreatedEvent` when an order is successfully created.
+
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class OrderService {
+
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
+
+    @Autowired
+    private OrderRepository repo;
+
+    @Transactional
+    public void createOrder(String orderId, String productName) {
+        try {
+            // Create and save order
+            final Order order = new Order();
+            order.setOrderId(orderId);
+            order.setProductName(productName);
+            repo.save(order);
+
+            // Publish order created event
+            eventPublisher.publishEvent(new OrderCreatedEvent(this, orderId));
+        } catch (final Exception e) {
+            // Handle exceptions
+            System.out.println(e.getMessage());
+            // Optionally, handle rollback logic
+        }
+    }
+}
+```
+
+#### 3. Create the Shipping Service to Handle the Event
+
+Create a listener that handles the `OrderCreatedEvent` and performs shipping-related tasks.
+
+```java
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -138,18 +150,15 @@ public class ShippingService {
         // Perform shipping related tasks...
     }
 }
+```
 
-@Component
-public class EmailService {
+### Summary
 
-    @EventListener
-    public void handleOrderCreated(OrderCreatedEvent event) {
-        // Logic to handle order created event
-        System.out.println("EmailService: Sending confirmation email for order - " + event.getOrderId());
-        // Send confirmation email to customer...
-    }
-}
+1. **OrderCreatedEvent**: Custom event class to carry order information.
+2. **OrderService**: Publishes an `OrderCreatedEvent` when an order is created.
+3. **ShippingService**: Listens for `OrderCreatedEvent` and handles shipping logic.
 
+This example demonstrates how to use the observer pattern with Spring's event system to decouple components and handle events in a clean, modular way. The `OrderService` publishes an event when an order is created, and the `ShippingService` listens for this event to perform shipping-related tasks.
 
 These examples provide a basic understanding of how these design patterns are implemented in Java. Each pattern addresses a specific problem and provides a reusable solution that can be applied to various scenarios in software development.
 

@@ -1,7 +1,9 @@
 package com.example.JOB4.stream;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StreamAPIJun18 {
@@ -25,5 +27,17 @@ public class StreamAPIJun18 {
 		final List<String> appleList = words.stream().filter(a -> a.startsWith("a")).collect(Collectors.toList());
 		System.out.println(appleList);
 
+		final String[] stringObjArr = stringObj.split(" ");
+		final Map<String, Integer> stringMap = new HashMap<>();
+		for (final String a : stringObjArr) {
+
+			stringMap.put(a, stringMap.getOrDefault(a, 0) + 1);
+
+		}
+		System.out.println(stringMap);
+
+		final List<String> duplicatedItem = stringMap.entrySet().stream().filter(e -> e.getValue() > 1)
+				.map(Map.Entry::getKey).collect(Collectors.toList());
+		System.out.println(duplicatedItem);
 	}
 }

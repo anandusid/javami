@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class StringApiExamples {
@@ -20,24 +18,25 @@ public class StringApiExamples {
 
 		final List<Integer> integerList = Arrays.asList(2, 3, 8);
 
-		final List<Integer> eqr = integerList.stream().map(s -> s * s).collect(Collectors.toList());
-
-		final String lowest = fruitList.stream().sort(Comparator.comparing(s).re).orElse(null);
-		System.out.println(lowest);
-
-		final List<String> fruitListWithDummy = Arrays.asList("ORange", "Mango", "Apple", "jackfruit", "Guva");
-
-		final Map<Integer, String> fruitMap = IntStream.range(0, fruitListWithDummy.size()).boxed()
-				.collect(Collectors.toMap(i -> i, i -> fruitListWithDummy.get(i)));
-
-		System.out.println(fruitMap);
+//		final List<Integer> eqr = integerList.stream().map(s -> s * s).collect(Collectors.toList());
+//
+//		final String lowest = fruitList.stream().sort(Comparator.comparing(s).re).orElse(null);
+//		System.out.println(lowest);
+//
+//		final List<String> fruitListWithDummy = Arrays.asList("ORange", "Mango", "Apple", "jackfruit", "Guva");
+//
+//		final Map<Integer, String> fruitMap = IntStream.range(0, fruitListWithDummy.size()).boxed()
+//				.collect(Collectors.toMap(i -> i, i -> fruitListWithDummy.get(i)));
+//
+//		System.out.println(fruitMap);
 
 		final List<Employee> employees = new ArrayList<>();
 		employees.add(new Employee(1, 20, 50000));
+		employees.add(new Employee(1, 30, 60000));
 
 		final double averageSalary = employees.stream().filter(e -> e.getAge() > 50).mapToDouble(Employee::getSalary)
 				.average().orElse(0.0);
-
+		final Optional<Integer> a = integerList.stream().max(Comparator.naturalOrder());
 	}
 
 }
