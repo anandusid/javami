@@ -22,13 +22,34 @@ public class ExploreStreamApi {
 		final List<String> stringsI = List.of("1234567", "9876543", "2345678");
 
 		final var stringObj = "India is my country , Pakisthan is my negbour company";
-		obj.coutWords(stringObj);
+		final String name = "Hello";
+		final List<String> stringList = Arrays.asList(name);
+//		obj.countName(name);
+//		obj.coutWords(stringObj);
 		obj.makeCharsForTheString(stringsa);
-		obj.makeIntegerForTheString(stringsI);
-		obj.createMapofLengthandCount(strings);
-		obj.createMappingWithOccurence(numbers);
-		obj.createMappingWithLength(fruitListWithDummy);
-		obj.createrFruitMapWithNameAndCount(fruitListWithDummy);
+		obj.makeCharsForTheString(stringList);
+//		obj.makeIntegerForTheString(stringsI);
+//		obj.createMapofLengthandCount(strings);
+//		obj.createMappingWithOccurence(numbers);
+//		obj.createMappingWithLength(fruitListWithDummy);
+//		obj.createrFruitMapWithNameAndCount(fruitListWithDummy);
+	}
+
+	private void countName(final String name) {
+		final List<String> stringList = Arrays.asList(name);
+
+		final Map<Character, Long> stringListMap = stringList.stream().flatMap(s -> s.chars().mapToObj(c -> (char) c))
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		System.out.println(stringListMap);
+
+//		final List<String> stringsI = List.of("1234567", "9876543", "2345678");
+//		final Map<Character, Long> integerMap = stringsI.stream().flatMap(a -> a.chars().mapToObj(c -> (char) c))
+//				.filter(Character::isDigit).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//		System.out.println(integerMap);
+//		final List<String> numbers = List.of("3", "2", "6", "1");
+//		final List<Integer> i = numbers.stream().map(Integer::valueOf).filter(a -> a % 2 == 0).filter(b -> b == 6)
+//				.collect(Collectors.toList());
+//		System.out.println(i);
 	}
 
 	private void coutWords(final String stringObj) {
@@ -50,6 +71,10 @@ public class ExploreStreamApi {
 		final List<Character> charList = stringsa.stream().flatMap(s -> s.chars().mapToObj(c -> (char) c))
 				.collect(Collectors.toList());
 		System.out.println("charList----- " + charList);
+
+		final String name = "Hello";
+
+		final List<Character> chardWordList = name.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
 
 	}
 

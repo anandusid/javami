@@ -53,12 +53,7 @@ java learn
 
 [String Class ](Notes/string/string-builder-buffer.md)
 
-[Spring and SPRING BOOT ](Notes/spring/spring.md)
 
-[micro service architecture ](Notes/spring/micro-service.md)
-
-
-[Spring JPA  ](Notes/ORM/Diiference-HIBERNATE-JPA-JPARepository.md)
 
 
 [Procedure  ](Notes/ORM/procedure.md)
@@ -72,3 +67,22 @@ java learn
 [mapping  ](Notes/ORM/mapping.md)
 
 [mapping  ](Notes/ORM/hib-working.md)
+
+
+[Spring and SPRING BOOT ](Notes/spring/spring.md)
+
+[micro service architecture ](Notes/spring/micro-service.md)
+
+
+[Spring JPA  ](Notes/ORM/Diiference-HIBERNATE-JPA-JPARepository.md)
+
+
+[Spring Bean Life Cycle ](Notes/spring/bean-life-cycle.md)
+
+[fault-tollerance](Notes/spring/fault-tollerance.md)
+
+
+[frame-work-level-exception  ](Notes/spring/frame-work-level-exception.md)
+
+
+

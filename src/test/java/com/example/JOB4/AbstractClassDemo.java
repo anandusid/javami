@@ -1,11 +1,13 @@
 package com.example.JOB4;
 
-public abstract class AbstractClassDemo {
-
-	abstract void test();
+public class AbstractClassDemo {
 
 	public void normalTest() {
 		System.out.println("AbstractClassDemo normalTest executing...");
+	}
+
+	public static void normalStaticTest() {
+		System.out.println("Parent normalStaticTest executing...");
 	}
 
 }

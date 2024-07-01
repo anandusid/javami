@@ -39,5 +39,8 @@ public class StreamAPIJun18 {
 		final List<String> duplicatedItem = stringMap.entrySet().stream().filter(e -> e.getValue() > 1)
 				.map(Map.Entry::getKey).collect(Collectors.toList());
 		System.out.println(duplicatedItem);
+
+		final Double d = numbers.stream().mapToDouble(a -> a).sum();
+		System.out.println(d);
 	}
 }

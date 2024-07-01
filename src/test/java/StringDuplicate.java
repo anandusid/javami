@@ -2,8 +2,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class StringDuplicate {
 
@@ -32,6 +35,10 @@ public class StringDuplicate {
 
 		// Process the optional result if present
 		System.out.println(employeeWithHighestSalary);
+		final Map<String, Long> wordCountMap = Arrays.asList(lineArr).stream()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		final Map<String, Long> duplicatedWord = wordCountMap.entrySet().stream().filter(e -> e.getValue() > 1)
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
 	}
 

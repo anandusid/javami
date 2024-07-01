@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +44,7 @@ public class StoreController {
 		return new ResponseEntity<>(createdSeller, HttpStatus.CREATED);
 	}
 
+	@CrossOrigin(origins = "http://localhost:5002")
 	@GetMapping("/store")
 	public ResponseEntity<List<Seller>> findStores() {
 		final List<Seller> createdSeller = storeService.findStores();

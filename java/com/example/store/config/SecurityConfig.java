@@ -10,9 +10,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
-	protected void configure(final HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/**").permitAll() // Allow access to all endpoints
-				.anyRequest().authenticated().and().csrf().disable(); // Disable CSRF protection for simplicity (not
-																		// recommended in production)
-	}
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/store/**").permitAll() // Update with appropriate access rules
+            .anyRequest().authenticated()
+            .and().csrf().disable(); // Disable CSRF for simplicity in testing
+    }
 }
