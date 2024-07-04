@@ -24,11 +24,24 @@ public class ArrayStreamOperation {
 //		findEvenNumbersInArray();
 //		findCube();
 		findPrimeNumber();
+		sortArray();
+	}
+
+	private static void sortArray() {
+		final String[] n = { "2", "5", "1", "6", "2", "4" };
+		final int[] m = { 2, 5, 1, 6, 2, 4 };
+
+		final int[] l = Arrays.asList(n).stream().map(Integer::valueOf).filter(j -> j % 2 == 0)
+				.mapToInt(Integer::intValue).toArray();
+		System.out.println(Arrays.toString(m));
+		System.out.println(Arrays.toString(Arrays.stream(m).boxed().filter(i -> i % 2 == 0).sorted().skip(1)
+				.mapToInt(Integer::intValue).toArray()));
 
 	}
 
 	private static void findPrimeNumber() {
-		Arrays.asList(4, 5, 6, 7, 1, 2, 3, 9).stream().filter(ArrayStreamOperation::isPrime).forEach(System.out::println);
+		Arrays.asList(4, 5, 6, 7, 1, 2, 3, 9).stream().filter(ArrayStreamOperation::isPrime)
+				.forEach(System.out::println);
 
 	}
 

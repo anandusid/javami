@@ -45,6 +45,8 @@ public class StreamExample {
 		System.out.println(sortedList);
 		final Map<String, Long> sortedMap = people.stream().sorted(Comparator.comparing(Person::getName))
 				.collect(Collectors.groupingBy(Person::getName, TreeMap::new, Collectors.counting()));
+		final List<Person> sortedListAge = people.stream().sorted(Comparator.comparing(Person::getAge)).skip(1)
+				.collect(Collectors.toList());
 
 		System.out.println(sortedMap);
 	}

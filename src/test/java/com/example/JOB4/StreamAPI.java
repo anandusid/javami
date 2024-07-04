@@ -57,7 +57,7 @@ public class StreamAPI {
 		final List<String> fruitListR = Arrays.asList("ORange", "Mango", "Apple", "jackfruit", "Guva");
 
 		final String all = fruitListR.stream().reduce(String::concat).orElse(null);
-		System.out.println(all);
+		System.out.println("reduce" + all);
 
 //		var mapObj = sortedFruitList.map(Collectors.toMap(s -> (, s));
 

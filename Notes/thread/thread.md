@@ -516,3 +516,224 @@ public class ThreadPoolDemo {
 ### Conclusion
 
 Using a thread pool improves the efficiency and performance of multi-threaded applications by reusing existing threads and controlling the number of concurrent threads. This example demonstrates how to use a thread pool to perform concurrent operations on a shared `Counter` object in a thread-safe manner.
+
+
+Sure! Here are explanations and examples of some important thread methods in Java, including `start()`, `join()`, `sleep()`, `wait()`, `notify()`, and `notifyAll()`:
+
+### `start()`
+
+- **Use**: Starts a new thread of execution. It calls the `run()` method of the `Thread` or `Runnable` object in a new thread.
+- **Example**:
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+}
+
+public class StartExample {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start(); // This starts the new thread and calls run()
+    }
+}
+```
+
+### `join()`
+
+- **Use**: Waits for the thread to die. It can be used to ensure that a thread completes its execution before the next thread starts.
+- **Example**:
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i);
+        }
+    }
+}
+
+public class JoinExample {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start();
+        try {
+            thread.join(); // Waits for thread to die
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Main thread ends after MyThread completes.");
+    }
+}
+```
+
+### `sleep()`
+
+- **Use**: Causes the currently executing thread to sleep (temporarily cease execution) for a specified number of milliseconds.
+- **Example**:
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            try {
+                Thread.sleep(1000); // Sleep for 1 second
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(i);
+        }
+    }
+}
+
+public class SleepExample {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start();
+    }
+}
+```
+
+### `wait()`
+
+- **Use**: Causes the current thread to wait until another thread invokes the `notify()` or `notifyAll()` methods for the same object. It must be called from within a synchronized context.
+- **Example**:
+
+```java
+class SharedResource {
+    synchronized void waitForSignal() {
+        try {
+            wait(); // Wait for notify
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Notified and resumed");
+    }
+
+    synchronized void sendSignal() {
+        notify(); // Notify waiting thread
+    }
+}
+
+public class WaitNotifyExample {
+    public static void main(String[] args) {
+        SharedResource resource = new SharedResource();
+
+        Thread t1 = new Thread(resource::waitForSignal);
+        Thread t2 = new Thread(resource::sendSignal);
+
+        t1.start();
+        try {
+            Thread.sleep(1000); // Ensure t1 waits before t2 sends signal
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t2.start();
+    }
+}
+```
+
+### `notify()`
+
+- **Use**: Wakes up a single thread that is waiting on the object's monitor.
+- **Example**: See above (`wait()`).
+
+### `notifyAll()`
+
+- **Use**: Wakes up all threads that are waiting on the object's monitor.
+- **Example**:
+
+```java
+class SharedResource {
+    synchronized void waitForSignal() {
+        try {
+            wait(); // Wait for notify
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Notified and resumed");
+    }
+
+    synchronized void sendSignal() {
+        notifyAll(); // Notify all waiting threads
+    }
+}
+
+public class WaitNotifyAllExample {
+    public static void main(String[] args) {
+        SharedResource resource = new SharedResource();
+
+        Thread t1 = new Thread(resource::waitForSignal);
+        Thread t2 = new Thread(resource::waitForSignal);
+        Thread t3 = new Thread(resource::sendSignal);
+
+        t1.start();
+        t2.start();
+        try {
+            Thread.sleep(1000); // Ensure t1 and t2 wait before t3 sends signal
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t3.start();
+    }
+}
+```
+
+### `run()`
+
+- **Use**: Contains the code that constitutes the new thread's task. It should be overridden in the `Thread` subclass or the `Runnable` implementation.
+- **Example**: See examples for `start()`.
+
+### `interrupt()`
+
+- **Use**: Interrupts a thread. If the thread is blocked in an interruptible blocking call, it will throw an `InterruptedException`.
+- **Example**:
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        try {
+            Thread.sleep(10000); // Sleep for 10 seconds
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrupted");
+        }
+    }
+}
+
+public class InterruptExample {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start();
+        try {
+            Thread.sleep(1000); // Wait 1 second
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        thread.interrupt(); // Interrupt the thread
+    }
+}
+```
+
+### `isAlive()`
+
+- **Use**: Tests if the thread is alive.
+- **Example**:
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+}
+
+public class IsAliveExample {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start();
+        System.out.println(thread.isAlive()); // True if thread is still running
+    }
+}
+```
+
+These methods provide various ways to control and coordinate the execution of threads in Java, ensuring proper synchronization, cooperation, and efficient use of resources.

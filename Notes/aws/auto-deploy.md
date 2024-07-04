@@ -119,3 +119,11 @@ Once you have set up the pipeline, any changes you push to the specified GitHub 
 ### Summary
 
 By following these steps, you've automated the deployment of your Spring Boot application using a CI/CD pipeline with AWS CodePipeline, CodeBuild, and CodeDeploy. This setup ensures that your application is built, tested, and deployed consistently and efficiently. If you need more detailed instructions for any specific step, feel free to ask!
+
+
+
+That sounds like a good summary! Here's a refined version:
+
+"When code is merged into GitHub, GitHub Actions initiates a CI/CD pipeline. AWS CodeBuild utilizes `buildspec.yml` to generate a `.jar` file. Following instructions in the Dockerfile, the `.jar` file is incorporated into a Docker image, configured with the necessary environment settings. This Docker image is then deployed via AWS CodeDeploy: it moves to an EC2 server from an EC cluster, ensuring the deployment aligns with the build's status."
+
+This summary covers the flow from code merge to deployment, emphasizing the roles of GitHub Actions, AWS CodeBuild, Dockerfile instructions, and AWS CodeDeploy in the CI/CD process.
