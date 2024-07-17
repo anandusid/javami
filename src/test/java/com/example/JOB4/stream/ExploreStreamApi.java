@@ -25,7 +25,7 @@ public class ExploreStreamApi {
 		final String name = "Hello";
 		final List<String> stringList = Arrays.asList(name);
 //		obj.countName(name);
-//		obj.coutWords(stringObj);
+		obj.coutWords(stringObj);
 		obj.makeCharsForTheString(stringsa);
 		obj.makeCharsForTheString(stringList);
 //		obj.makeIntegerForTheString(stringsI);

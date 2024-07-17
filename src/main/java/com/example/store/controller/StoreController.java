@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.store.config.UserServiceClient;
 import com.example.store.entity.Enquiry;
 import com.example.store.entity.Seller;
 import com.example.store.entity.Store;
@@ -20,6 +21,7 @@ import com.example.store.repo.OrderEnquiryRepo;
 import com.example.store.service.StoreService;
 
 @RestController
+@RequestMapping("/store")
 public class StoreController {
 
 	@Autowired
@@ -27,9 +29,17 @@ public class StoreController {
 	@Autowired
 	private OrderEnquiryRepo repo;
 
+	@Autowired
+	private UserServiceClient storeServiceClient;
+
 	@GetMapping("/test")
-	public String test() {
-		return "working";
+	public void test() {
+		try {
+			storeServiceClient.getTest();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@PostMapping("/store")
@@ -44,7 +54,6 @@ public class StoreController {
 		return new ResponseEntity<>(createdSeller, HttpStatus.CREATED);
 	}
 
-	@CrossOrigin(origins = "http://localhost:5002")
 	@GetMapping("/store")
 	public ResponseEntity<List<Seller>> findStores() {
 		final List<Seller> createdSeller = storeService.findStores();

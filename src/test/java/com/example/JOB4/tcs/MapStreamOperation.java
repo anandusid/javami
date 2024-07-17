@@ -2,12 +2,24 @@ package com.example.JOB4.tcs;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import org.assertj.core.util.Arrays;
 
 public class MapStreamOperation {
 
 	public static void main(final String[] args) {
 		sortMap();
+		findDuplicate();
+	}
+
+	private static void findDuplicate() {
+		final var stringObj = "India is my country , Pakisthan is my negbour company";
+
+		Arrays.asList(stringObj.replaceAll("[^a-zA-z]", "").split(" ")).stream()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
 	}
 
 	private static void sortMap() {

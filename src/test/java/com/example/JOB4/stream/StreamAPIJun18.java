@@ -1,10 +1,10 @@
 package com.example.JOB4.stream;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class StreamAPIJun18 {
 	public static void main(final String[] args) {
@@ -14,33 +14,37 @@ public class StreamAPIJun18 {
 		final List<String> strings = List.of("apple", "banana", "pear", "orange", "kiwi", "grape");
 		final List<String> stringsa = List.of("apple", "banana", "pear");
 
-		final List<String> stringsI = List.of("1234567", "9876543", "2345678");
+		map();
+//		concateString(fruitListWithDummy);
 
-		final var stringObj = "India is my country , Pakisthan is my negbour company";
+//		findSumOfList(numbers);
 
-		final List<Character> integerList = stringsI.stream().flatMap(s -> s.chars().mapToObj(i -> (char) i))
-				.collect(Collectors.toList());
-		integerList.stream().forEach(System.out::println);
-		final List<String> words = Arrays.asList("apple", "banana", "cherry");
+		sortNumberinAsc(numbers);
 
-		final List<Integer> lengths = words.stream().map(String::length).collect(Collectors.toList());
-		final List<String> appleList = words.stream().filter(a -> a.startsWith("a")).collect(Collectors.toList());
-		System.out.println(appleList);
+	}
 
-		final String[] stringObjArr = stringObj.split(" ");
-		final Map<String, Integer> stringMap = new HashMap<>();
-		for (final String a : stringObjArr) {
+	private static void map() {
+		final Map<String, Integer> mapObj = new HashMap<>();
+		mapObj.put("abc", 1);
+		mapObj.put("abc", 2);
 
-			stringMap.put(a, stringMap.getOrDefault(a, 0) + 1);
+	}
 
-		}
-		System.out.println(stringMap);
+	private static void sortNumberinAsc(final List<Integer> numbers) {
+		numbers.stream().sorted(Comparator.naturalOrder());
 
-		final List<String> duplicatedItem = stringMap.entrySet().stream().filter(e -> e.getValue() > 1)
-				.map(Map.Entry::getKey).collect(Collectors.toList());
-		System.out.println(duplicatedItem);
+	}
 
-		final Double d = numbers.stream().mapToDouble(a -> a).sum();
-		System.out.println(d);
+	private static void findSumOfList(final List<Integer> numbers) {
+
+		final var s = numbers.stream().mapToInt(Integer::valueOf).sum();
+		System.out.println(s);
+
+	}
+
+	private static void concateString(final List<String> fruitListWithDummy) {
+
+		System.out.println(fruitListWithDummy.stream().filter(null));
+
 	}
 }
