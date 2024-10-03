@@ -29,18 +29,18 @@ public class StoreController {
 	@Autowired
 	private OrderEnquiryRepo repo;
 
-	@Autowired
-	private UserServiceClient storeServiceClient;
+//	@Autowired
+//	private UserServiceClient storeServiceClient;
 
-	@GetMapping("/test")
-	public void test() {
-		try {
-			storeServiceClient.getTest();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	@GetMapping("/test")
+//	public void test() {
+//		try {
+//			storeServiceClient.getTest();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	@PostMapping("/store")
 	public ResponseEntity<Store> createStore(@RequestBody final StorePojo storeRequest) {
