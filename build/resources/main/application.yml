@@ -1,0 +1,50 @@
+# Database Configuration
+server:
+  port: 5000
+
+spring:
+  batch:
+    initialize-schema: always 
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db:3306/orders?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: javami-consumer-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+# Resilience4j Circuit Breaker Configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        failure-rate-threshold: 50
+        ring-buffer-size-in-closed-state: 5
+        ring-buffer-size-in-half-open-state: 3
+        wait-duration-in-open-state: 10s # 10 seconds
+
+# Uncomment the following lines if needed for actuator endpoints
+# management:
+#   endpoints:
+#     web:
+#       base-path: /manage
+#       exposure:
+#         include: "*"

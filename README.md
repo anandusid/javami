@@ -86,3 +86,12 @@ java learn
 
 
 
+Dec-06
+
+[Testing Frame Work Mockito ](Notes/Mockito/test.md)
+
+[Design Pattern Microservice  ] (Notes/jpaaudting.md)
+
+
+[Kafka  ] (Notes/kafka.md)
+

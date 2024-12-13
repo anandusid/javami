@@ -18,6 +18,7 @@ import com.example.store.entity.Seller;
 import com.example.store.entity.Store;
 import com.example.store.pojo.StorePojo;
 import com.example.store.repo.OrderEnquiryRepo;
+import com.example.store.service.KafkaProducerService;
 import com.example.store.service.StoreService;
 
 @RestController
@@ -27,7 +28,7 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 	@Autowired
-	private OrderEnquiryRepo repo;
+	private KafkaProducerService kafkaProducerService;
 
 //	@Autowired
 //	private UserServiceClient storeServiceClient;
@@ -64,10 +65,13 @@ public class StoreController {
 	public ResponseEntity<Seller> findStore(@PathVariable final Long id) {
 		System.out.println(" Main controller");
 		final Seller createdSeller = storeService.findStore(id);
-		final Enquiry obj = new Enquiry();
-		obj.setSellerId(String.valueOf(id));
-		obj.setName("User");
-		repo.save(obj);
 		return new ResponseEntity<>(createdSeller, createdSeller != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
+	@GetMapping("/store/kafka")
+	public ResponseEntity<Store> sendMessage() {
+		kafkaProducerService.sendMessage("javami-topic", "Hello from javami!");
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+
 }

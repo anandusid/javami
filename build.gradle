@@ -35,17 +35,39 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
 
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
     
     implementation 'mysql:mysql-connector-java:8.0.27'
+    
+    // message brocker system
+    implementation 'org.springframework.kafka:spring-kafka'
+    
+    // circuit breaker system
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.7.0'
+    
+    
+    testImplementation platform('org.junit:junit-bom:5.9.3') // Manages JUnit versions
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    
+    // Mocking with Mockito
     testImplementation 'org.mockito:mockito-core'
-    testImplementation 'org.mockito:mockito-junit-jupiter'
+    
+    // Web MVC test support
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    
+    testImplementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+bootJar {
+    archiveFileName = 'javami-1.jar'
 }
 
 jar {
