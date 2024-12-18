@@ -95,5 +95,5 @@ Dec-06
 
 [Kafka ](Notes/kafka.md)
 
-[Git Related ](Notes/Git Related/create-repo.md)
+[Git Related ](Notes/Git-Related/create-repo.md)
 
